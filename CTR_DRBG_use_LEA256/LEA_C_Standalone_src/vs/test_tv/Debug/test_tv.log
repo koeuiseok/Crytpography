@@ -1,0 +1,11 @@
+﻿  main.c
+C:\Users\82109\Desktop\고의석\암호최적화\3주차 CMAC_LEA HMAC_SHA512\LEA_C_Standalone_src\src\config.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\82109\Desktop\고의석\암호최적화\3주차 CMAC_LEA HMAC_SHA512\LEA_C_Standalone_src\src\lea_locl.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\82109\Desktop\고의석\암호최적화\3주차 CMAC_LEA HMAC_SHA512\LEA_C_Standalone_src\main.c(44,17): warning C4047: '함수': 'LEA_KEY *'의 간접 참조 수준이 'LEA_KEY **'과(와) 다릅니다.
+C:\Users\82109\Desktop\고의석\암호최적화\3주차 CMAC_LEA HMAC_SHA512\LEA_C_Standalone_src\main.c(44,17): warning C4024: 'lea_set_key': 형식 및 실제 매개 변수 1의 형식이 서로 다릅니다.
+C:\Users\82109\Desktop\고의석\암호최적화\3주차 CMAC_LEA HMAC_SHA512\LEA_C_Standalone_src\main.c(66,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\82109\Desktop\고의석\암호최적화\3주차 CMAC_LEA HMAC_SHA512\LEA_C_Standalone_src\main.c(71,27): warning C4022: 'memset': 실제 매개 변수 1의 포인터가 일치하지 않습니다.
+C:\Users\82109\Desktop\고의석\암호최적화\3주차 CMAC_LEA HMAC_SHA512\LEA_C_Standalone_src\main.c(75,20): warning C4018: '<=': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\82109\Desktop\고의석\암호최적화\3주차 CMAC_LEA HMAC_SHA512\LEA_C_Standalone_src\main.c(79,28): warning C4047: '함수': 'const LEA_KEY *'의 간접 참조 수준이 'LEA_KEY **'과(와) 다릅니다.
+C:\Users\82109\Desktop\고의석\암호최적화\3주차 CMAC_LEA HMAC_SHA512\LEA_C_Standalone_src\main.c(79,28): warning C4024: 'lea_ecb_enc': 형식 및 실제 매개 변수 4의 형식이 서로 다릅니다.
+  test_tv.vcxproj -> C:\Users\82109\Desktop\고의석\암호최적화\3주차 CMAC_LEA HMAC_SHA512\LEA_C_Standalone_src\vs\Debug\test_tv.exe
