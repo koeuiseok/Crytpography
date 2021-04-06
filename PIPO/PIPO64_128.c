@@ -130,6 +130,18 @@ void ENC(u16* PLAIN_TEXT, u16* ROUND_KEY, u16* CIPHER_TEXT) {
 	u8* P = (u8*)PLAIN_TEXT;
 	u8* RK = (u8*)ROUND_KEY;
 
+	for (int j = 0; j < 8; j++)
+	{
+		printf("%02X\t", P[j]);
+	}
+
+	printf("\n=====RK=====\n");
+	for (int j = 0; j < 56; j++)
+	{
+		printf("%02X\t", RK[j]);
+	}
+
+
 	keyadd(P, RK);
 
 	for (i = 1; i < ROUND + 1; i++)
@@ -139,7 +151,16 @@ void ENC(u16* PLAIN_TEXT, u16* ROUND_KEY, u16* CIPHER_TEXT) {
 		keyadd(P, RK + (i * 8));
 
 	}
+
+	printf("\n\n==CIPHER_TEXT==\n");
+	for (int j = 0; j < 8; j++)
+	{
+		printf("%02X\t", P[j]);
+	}
+
 }
+
+
 
 void ROUND_KEY_GEN() {
 	u32 i, j;
@@ -185,6 +206,48 @@ void ROUND_KEY_GEN() {
 
 		printf("\n");
 	}
+
+
+
+}
+
+
+
+void ko_PIPO()
+{
+	printf("\n\n==ko==\n\n");
+	unsigned char newPlaintext[8] = { 0x26, 0x00, 0x27, 0x1E, 0xF6, 0x52, 0x85, 0x09 };
+	unsigned char newMasterkey[16] = { 0x97, 0x22, 0x15, 0x2E, 0xAD, 0x20, 0x1D, 0x7E, 0xD2,0x28, 0x94, 0x77, 0xDD, 0x16, 0xC4, 0x6D };
+	unsigned char koRK[112];
+	printf("\n==ROUND_KEY==\n");
+	unsigned char RCON = 0;
+	for (int i = 0; i < ROUND + 1; i++) {
+		for (int j = 0; j < 8; j++)
+			koRK[8 * i + j] = newMasterkey[(8 * i + j) % (MASTER_KEY_SIZE * 8)];
+		koRK[8 * i] ^= RCON;
+		RCON++;
+	}
+
+	for (int j = 0; j < 56; j++)
+	{
+		printf("%02X\t", koRK[j]);
+	}
+
+	keyadd(newPlaintext, koRK);
+	for (int i = 1; i < ROUND + 1; i++)
+	{
+		sbox(newPlaintext);
+		pbox(newPlaintext);
+		keyadd(newPlaintext, koRK + (i * 8));
+	}
+
+	printf("\n\n==CIPHER_TEXT==\n");
+	for (int j = 0; j < 8; j++)
+	{
+		printf("%02X\t", newPlaintext[j]);
+	}
+
+
 }
 
 int main(void) {
@@ -194,7 +257,9 @@ int main(void) {
 	ENC(PLAIN_TEXT, ROUND_KEY, CIPHER_TEXT);
 
 	printf("\n\n==CIPHER_TEXT==\n");
-	printf("%04X, %04X, %04X, %04X\n", PLAIN_TEXT[3], PLAIN_TEXT[2],PLAIN_TEXT[1], PLAIN_TEXT[0]);
+	printf("%04X, %04X, %04X, %04X\n", PLAIN_TEXT[3], PLAIN_TEXT[2], PLAIN_TEXT[1], PLAIN_TEXT[0]);
+
+	ko_PIPO();
 
 	return EXIT_SUCCESS;
 }
