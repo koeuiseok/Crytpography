@@ -25,10 +25,6 @@ u16 CIPHER_TEXT[SIZE] = { 0, };
 void two_asm_enc(u8* PLAIN_TEXT1, u8* ROUND_KEY, u8* PLAIN_TEXT2)
 {
 
-#if CCS
-    asm(" mov.w r12, r13\r\n");
-    asm(" mov.w r11, r12\r\n");
-#endif
     asm(" mov.b 0x0(r12), r4\r\n");
     asm(" mov.b 0x1(r12), r5\r\n");
     asm(" mov.b 0x2(r12), r6\r\n");
@@ -67,9 +63,8 @@ void two_asm_enc(u8* PLAIN_TEXT1, u8* ROUND_KEY, u8* PLAIN_TEXT2)
     asm(" push r12\r\n");
     asm(" push r14\r\n");
 
-    //round number
-    asm(" mov.w #13, r12\r\n");
-
+int i=0;
+    for(i=0; i<13; i++){
     // r4 : p[0] ~ r11 : p[7]
 
     //key add
@@ -303,10 +298,50 @@ void two_asm_enc(u8* PLAIN_TEXT1, u8* ROUND_KEY, u8* PLAIN_TEXT2)
     asm(" and.w #0xfcfc, r11\r\n");
     asm(" xor.w r15, r11\r\n");
 //round is over.
+    asm(" add.w #8, r13\r\n");
+    }
+
+    asm(" mov.b 0x0(r13), r15\r\n");
+    asm(" xor.w r15, r4\r\n");
+    asm(" swpb r4\r\n");
+    asm(" xor.w r15, r4\r\n");
+
+    asm(" mov.b 0x1(r13), r15\r\n");
+    asm(" xor.w r15, r5\r\n");
+    asm(" swpb r5\r\n");
+    asm(" xor.w r15, r5\r\n");
+
+    asm(" mov.b 0x2(r13), r15\r\n");
+    asm(" xor.w r15, r6\r\n");
+    asm(" swpb r6\r\n");
+    asm(" xor.w r15, r6\r\n");
+
+    asm(" mov.b 0x3(r13), r15\r\n");
+    asm(" xor.w r15, r7\r\n");
+    asm(" swpb r7\r\n");
+    asm(" xor.w r15, r7\r\n");
+
+    asm(" mov.b 0x4(r13), r15\r\n");
+    asm(" xor.w r15, r8\r\n");
+    asm(" swpb r8\r\n");
+    asm(" xor.w r15, r8\r\n");
+
+    asm(" mov.b 0x5(r13), r15\r\n");
+    asm(" xor.w r15, r9\r\n");
+    asm(" swpb r9\r\n");
+    asm(" xor.w r15, r9\r\n");
+
+    asm(" mov.b 0x6(r13), r15\r\n");
+    asm(" xor.w r15, r10\r\n");
+    asm(" swpb r10\r\n");
+    asm(" xor.w r15, r10\r\n");
+
+    asm(" mov.b 0x7(r13), r15\r\n");
+    asm(" xor.w r15, r11\r\n");
+    asm(" swpb r11\r\n");
+    asm(" xor.w r15, r11\r\n");
 
 
-  //for문
-    asm(" cmp.w #0, r12\r\n");
     asm(" pop r14\r\n");
     asm(" pop r12\r\n");
 
@@ -335,13 +370,11 @@ void asm_enc(u8* PLAIN_TEXT, u8* ROUND_KEY)
     asm(" mov.b 0x7(r12), r11\r\n");  //평문 주솟값 : r12
     asm(" push r12\r\n");
 
-    //round number
-    asm(" mov.b #13, r12\r\n");
 
     // r4 : p[0] ~ r11 : p[7]
 
     //key add
-
+    for(int i=0; i<13; i++){
         asm(" xor.b 0x0(r13), r4\r\n");
         asm(" xor.b 0x1(r13), r5\r\n");
         asm(" xor.b 0x2(r13), r6\r\n");
@@ -506,10 +539,20 @@ void asm_enc(u8* PLAIN_TEXT, u8* ROUND_KEY)
     asm(" adc.b r11\r\n");
     asm(" rla.b r11\r\n");
     asm(" adc.b r11\r\n");
-//round is over
 
-  //for문
-    asm(" cmp.w #0, r12\r\n");
+    asm(" add.w #8, r13\r\n");
+//round is over
+    }
+
+    asm(" xor.b 0x0(r13), r4\r\n");
+    asm(" xor.b 0x1(r13), r5\r\n");
+    asm(" xor.b 0x2(r13), r6\r\n");
+    asm(" xor.b 0x3(r13), r7\r\n");
+    asm(" xor.b 0x4(r13), r8\r\n");
+    asm(" xor.b 0x5(r13), r9\r\n");
+    asm(" xor.b 0x6(r13), r10\r\n");
+    asm(" xor.b 0x7(r13), r11\r\n");
+
 
 
 
