@@ -1,4 +1,4 @@
-## 2020 WISA 논문 코드 : HIGHT_assemble_with_msp430
+## 2020 동계정보보호학회 논문 코드 : HIGHT_assemble_with_msp430
 HIGHT_ENCRYPTION_implement_assembly_with_16bit_msp430
 
 
