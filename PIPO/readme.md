@@ -1,6 +1,6 @@
-#PIPO block cipher
+# PIPO block cipher
 
-##PIPO (Plug In Plug Out)이란?
+## PIPO (Plug In Plug Out)이란?
   ###: 2020년 제작된 국산 암호알고리즘
   ###: 차분, 선형 공격으로 부터 안전하게 설계  => 안전성의 척도인 차분, 선형에 대한 branch number를 일정 수준(level 3)이상
   ###: bitslicing을 기반으로 SBOX 연산시 사전연산(Table) 없이도 그보다 더 빠른 구현 가능
